@@ -1,3 +1,8 @@
+
+# Eth-intermediate-module-4
+*Aim of the Project*
+Create an ERC20 token and deploy it on the Avalanche network for Degen Gaming. It consists of minting, burning, transferring, redeeming tokens, and checking the account balance.
+
 # Create a custom token and deploy it to Avalanche Fuji Testnet
 
 
@@ -5,33 +10,42 @@ This project is part of ETH+AVAX Proof Intermediate course by Metacrafters
 
 In this project we had to build a custom token using Solidity and deploy it to Avalanche Fuji Testnet using Hardhat.
 
-## Pre-requisites
+*Logic of the code*
 
-- Make sure you have a Web3 wallet such as **Metamask**.
-- Visit a Avalanche Fuji Testnet faucet to recieve tokens in your wallet, which will be used to pay the transaction fee
+1. Write the license identifier and solidity version.
 
+2. Import the open Zeppelin contracts and hardhat/console.sol dependencies.
 
-## Setup
+3. Create a contract named as DegenToken which is Ownable and ERC20Burnable.
 
+4. It consists of a constructor which defines the name and symbol of the token as "Degen Token" and "DGN " respectively.
 
-#### 1. Open remix.etherium.org
+5. The function mint_tokens consists of minting a specific amount to a particular address. It is declared public so that it can be accessed outside the contract.
 
+6. The transfer_Token function takes the receiver's address and amount to be transferred as its parameters. It has a require statement that confirms that the balance of the sender should be greater than or equal to the amount to be transferred else the string message is returned. If the condition returns to true, then the approve  and transferFrom  function transfers the tokens(amount) from the sender to the receiver.
 
-#### 2.  Replace "SELECTED_NETWORK" with either fuji or mainnet
+7. The getBalance function is declared external and returns the unsigned int value of the valance in the sender's account/address.
 
+8. The burn_Tokens take the unsigned int value of the amount as its parameter. It is declared as external. The require statement checks that the balance of the sender should be greater than or equal to the amount to be transferred else the string message is returned. If the condition returns to the true, then the burn function burns the specific amount of tokens from the sender's account.
 
-## Verification
+9. The redeem_Tokens is declared public and pure. It returns the five rewards(strings) which will be redeemed if the conditions are satisfied.
 
-After the script executes successfully, the contract will be deployed on the selected net, and the address of the token would be printed.
+10. The user enters a particular number. The require statement checks that the entered number should be less than the total number of the choices provided, if yes then the condition matching with the choice is executed and that particular numbered reward is redeemed by paying the listed tokens.
 
-You can verify the Token creation on Snowtrace by pasting its address.
+*Functionality of the code*
 
-To interact with the token, we'll be using Remix IDE
+1. Open the Remix IDE(https://remix.ethereum.org) and clone the repository provided in the module.
 
+2. Open the contacts folder and write the above code.
 
-## Interaction
+3. Compile the DegenToken.sol contract.
 
-- Open Remix IDE on a browser
-- Upload the same contract and press Ctrl+S to save and compile it
-- Approve the connection to your **Web3** wallet, and the IDE will be connected to the net, and account will be loaded automatically.
-- Paste your token address and click **At Address**. This will load up the contract, and you will be able to interact with it.
+4. In the deploy section, select Injected Provider environment which will help us to connect with the metamask.
+
+5. Paste the address of the account currently running in the meta mask in the At Address section.
+
+6. Open the deployed contract. Run different functions of minting, burning, transferring, redeeming tokens, and checking the account balance.
+
+7. Verify the transactions by pasting the same address in the Snowtrace Testnet site.(https://testnet.snowtrace.io)
+
+8. If all the tests are passed, then the contract has successfully followed every requirement of the project.
